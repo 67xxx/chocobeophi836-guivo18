@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8/3/2026 - Our Journey | ductho123</title>
+    <link href="https://googleapis.com" rel="stylesheet">
+    <style>
+        body { 
+            margin: 0; height: 100vh; overflow: hidden;
+            background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+            font-family: 'Quicksand', sans-serif; color: #fff;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .stars-container { position: absolute; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+        .star { position: absolute; background: #fff; border-radius: 50%; opacity: 0.5; animation: twinkle var(--d) infinite; }
+        @keyframes twinkle { 0%, 100% { opacity: 0.3; transform: scale(1); } 50% { opacity: 1; transform: scale(1.5); } }
+
+        .cre-tag {
+            position: fixed; bottom: 20px; right: 25px; 
+            font-size: 0.75rem; opacity: 0.5; letter-spacing: 3px;
+            text-transform: uppercase; z-index: 100;
+            border-right: 2px solid #ffb3c1; padding-right: 10px;
+        }
+
+        .center-content { text-align: center; z-index: 10; pointer-events: none; }
+        .main-date {
+            font-family: 'Dancing Script', cursive; font-size: clamp(5rem, 15vw, 8.5rem); margin: 0;
+            background: linear-gradient(to bottom, #fff, #ffb3c1);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 20px rgba(255,179,193,0.4));
+        }
+
+        /* 2 ẢNH NHẢY MÚA */
+        .photo-dance {
+            position: absolute; width: 150px; height: 150px; border-radius: 50%;
+            border: 3px solid #ffb3c1; padding: 5px; object-fit: cover; z-index: 5;
+            box-shadow: 0 0 30px rgba(255, 179, 193, 0.3);
+        }
+        .p1 { animation: danceX1 15s ease-in-out infinite alternate, danceY1 10s ease-in-out infinite alternate; }
+        .p2 { animation: danceX2 15s ease-in-out infinite alternate, danceY2 10s ease-in-out infinite alternate; }
+        @keyframes danceX1 { from { left: 5%; } to { left: 80%; } }
+        @keyframes danceY1 { from { top: 10%; } to { top: 60%; } }
+        @keyframes danceX2 { from { left: 80%; } to { left: 5%; } }
+        @keyframes danceY2 { from { top: 60%; } to { top: 10%; } }
+
+        #open-toggle { display: none; }
+        .open-btn {
+            position: absolute; bottom: 10%; padding: 14px 45px;
+            border: 1px solid rgba(255,255,255,0.3); border-radius: 40px;
+            background: rgba(255,255,255,0.1); color: #fff; cursor: pointer;
+            backdrop-filter: blur(15px); transition: 0.5s; z-index: 100;
+            text-transform: uppercase; letter-spacing: 2px;
+        }
+        .open-btn:hover { background: #fff; color: #000; box-shadow: 0 0 30px #fff; }
+
+        .wish-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(5, 7, 12, 0.98); display: none;
+            flex-direction: column; align-items: center; justify-content: center; z-index: 1000;
+        }
+        #open-toggle:checked ~ .wish-overlay { display: flex; animation: fadeIn 0.8s forwards; }
+
+        .letter { 
+    width: 85%; /* Sử dụng % thay vì px để linh hoạt trên điện thoại */
+    max-width: 500px; 
+    text-align: center; 
+    padding: 20px; 
+    border-radius: 20px; 
+    background: rgba(255,255,255,0.08); 
+    border: 1px solid rgba(255,255,255,0.2); 
+    z-index: 1001;
+    backdrop-filter: blur(10px); /* Thêm blur cho đẹp */
+    box-sizing: border-box; /* Giúp padding không làm tăng chiều rộng thư */
+}
+
+.letter h2 { 
+    font-family: 'Dancing Script', cursive; 
+    font-size: clamp(2rem, 8vw, 3rem); /* Chữ tự nhỏ lại trên mobile */
+    color: #ffb3c1; 
+    margin: 10px 0; 
+}
+
+.letter p { 
+    font-size: clamp(0.9rem, 4vw, 1.1rem); /* Chữ tự nhỏ lại trên mobile */
+    line-height: 1.6; 
+    color: #eee; 
+    word-wrap: break-word; /* Chống tràn chữ */
+}
+
+        /* HIỆU ỨNG TIM NỔ TUNG */
+        .heart-particle {
+            position: fixed; pointer-events: none; z-index: 9999;
+            font-size: 20px; animation: heartExplode 2s ease-out forwards;
+[08/03/2026 7:51 CH] ㅤ: }
+        @keyframes heartExplode {
+            0% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
+            100% { transform: translate(var(--tx), var(--ty)) scale(0) rotate(var(--tr)); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <audio id="myMusic" loop>
+        <source src="https://files.catbox.moe/44mhfw.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="cre-tag">© 2026 | DESIGNED BY DUCTHO123</div>
+    <input type="checkbox" id="open-toggle">
+    <div class="stars-container" id="stars"></div>
+
+        <img src="https://i.postimg.cc/k408tsMZ/photo-2026-03-07-21-55-08-jpg-67.jpg" class="photo-dance p1">
+    <img src="https://i.postimg.cc/RhdHZ9tV/photo-2026-03-08-11-28-02.jpg" class="photo-dance p2">
+
+    <div class="center-content">
+        <h1 class="main-date">8/3</h1>
+        <div class="sub-text">MY PRINCESS, MY EVERYTHING</div>
+    </div>
+
+    <label for="open-toggle" class="open-btn" onclick="handleOpen(event)">Gửi em điều ngọt ngào ✨</label>
+
+    <div class="wish-overlay">
+        <div class="letter">
+            <h2>Gửi Em...</h2>
+            <p>
+                "Thế là cưới thôi em ơi!" 🌚❤️<br>
+                Chúc công chúa một ngày 8/3 rạng rỡ và hạnh phúc.<br>
+                Dù thế giới ngoài kia có thế nào, tớ vẫn luôn ở đây!<br>
+                Cảm ơn êm6736,<br>
+                Yêuu em rất nhiềuu!
+            </p>
+            <label for="open-toggle" style="cursor:pointer; opacity: 0.4; font-size: 0.8rem; display: block; margin-top: 20px;">[ Back ]</label>
+        </div>
+    </div>
+
+    <script>
+        // Tạo 100 sao
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 100; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            const size = Math.random() * 3 + 'px';
+            star.style.width = size; star.style.height = size;
+            star.style.top = Math.random() * 100 + '%';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.setProperty('--d', (Math.random() * 3 + 2) + 's');
+            starsContainer.appendChild(star);
+        }
+
+        function handleOpen(e) {
+            // Phát nhạc
+            const audio = document.getElementById('myMusic');
+            audio.play().catch(() => console.log("Cần link mp3 chuẩn để phát"));
+
+            // Hiệu ứng tim nổ từ nút bấm
+            const x = e.clientX;
+            const y = e.clientY;
+            
+            for(let i=0; i<40; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart-particle';
+                heart.innerHTML = ['❤️','💕','💖','🌸'][Math.floor(Math.random()*4)];
+                heart.style.left = x + 'px';
+                heart.style.top = y + 'px';
+                
+                // Tọa độ bắn ra ngẫu nhiên
+                const tx = (Math.random() - 0.5) * 600 + 'px';
+                const ty = (Math.random() - 0.5) * 600 + 'px';
+                const tr = Math.random() * 720 + 'deg';
+                
+                heart.style.setProperty('--tx', tx);
+                heart.style.setProperty('--ty', ty);
+                heart.style.setProperty('--tr', tr);
+                
+                document.body.appendChild(heart);
+                setTimeout(() => heart.remove(), 2000);
+            }
+        }
+    </script>
+</body>
+</html>
