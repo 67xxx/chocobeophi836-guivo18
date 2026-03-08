@@ -54,39 +54,54 @@
         }
         .open-btn:hover { background: #fff; color: #000; box-shadow: 0 0 30px #fff; }
 
-        .wish-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(5, 7, 12, 0.98); display: none;
-            flex-direction: column; align-items: center; justify-content: center; z-index: 1000;
-        }
-        #open-toggle:checked ~ .wish-overlay { display: flex; animation: fadeIn 0.8s forwards; }
+        /* Khóa chặt lớp phủ để không bị rung lắc */
+.wish-overlay {
+    position: fixed; 
+    top: 0; left: 0; 
+    width: 100vw; height: 100vh;
+    background: rgba(5, 7, 12, 0.98); 
+    display: none;
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+    z-index: 9999; /* Đẩy lên cao nhất */
+}
 
-        .letter { 
-    width: 85%; /* Sử dụng % thay vì px để linh hoạt trên điện thoại */
-    max-width: 500px; 
+#open-toggle:checked ~ .wish-overlay { 
+    display: flex !important; 
+}
+/* Cố định khung thư ở giữa màn hình, không cho đung đưa */
+.letter { 
+    width: 85%; 
+    max-width: 450px; 
     text-align: center; 
-    padding: 20px; 
+    padding: 30px 20px; 
     border-radius: 20px; 
     background: rgba(255,255,255,0.08); 
     border: 1px solid rgba(255,255,255,0.2); 
-    z-index: 1001;
-    backdrop-filter: blur(10px); /* Thêm blur cho đẹp */
-    box-sizing: border-box; /* Giúp padding không làm tăng chiều rộng thư */
+    backdrop-filter: blur(10px);
+    box-sizing: border-box;
+    /* Loại bỏ hoàn toàn các animation nếu có bị kế thừa */
+    animation: none !important; 
+    transform: none !important;
 }
 
+/* Chỉnh chữ để không bị nhảy khi xuống dòng */
 .letter h2 { 
     font-family: 'Dancing Script', cursive; 
-    font-size: clamp(2rem, 8vw, 3rem); /* Chữ tự nhỏ lại trên mobile */
+    font-size: 2.5rem; 
     color: #ffb3c1; 
-    margin: 10px 0; 
+    margin: 0 0 15px 0; 
 }
 
 .letter p { 
-    font-size: clamp(0.9rem, 4vw, 1.1rem); /* Chữ tự nhỏ lại trên mobile */
-    line-height: 1.6; 
+    font-size: 1.05rem; 
+    line-height: 1.7; 
     color: #eee; 
-    word-wrap: break-word; /* Chống tràn chữ */
+    margin: 0;
+    word-break: break-word; /* Tránh vỡ chữ */
 }
+
 
         /* HIỆU ỨNG TIM NỔ TUNG */
         .heart-particle {
